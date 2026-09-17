@@ -1,0 +1,3102 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ВОЛЬТ·МОБИЛЬ — срочный ремонт электровелосипедов в Брагино, Ярославль</title>
+    <meta name="description"
+        content="Выездные мастера Алексей и Влад: срочный ремонт электровелосипедов в Брагино (Дзержинский район Ярославля). Курьерам — вне очереди, выезд от 8 минут, ремонт на месте. Тутаевское шоссе, 1в.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/cyrillic-400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p/latin-400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/cyrillic-400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/cyrillic-500.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/cyrillic-600.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/cyrillic-700.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/cyrillic-800.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/latin-400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/latin-700.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/manrope/latin-800.css">
+    <style>
+        :root {
+            --bg: #e7e0c8;
+            --bg2: #dcd4b6;
+            --panel: #fbf7e8;
+            --panel2: #f1ead2;
+            --ink: #1d1f2a;
+            --ink2: #3a3d4d;
+            --volt: #8fd421;
+            --volt-dk: #5f9411;
+            --volt-lt: #c9ef6a;
+            --volt-bg: #e6f6c4;
+            --orange: #ef6c1a;
+            --orange-lt: #ffa15c;
+            --orange-bg: #ffe3cd;
+            --cyan: #2aa9d6;
+            --cyan-dk: #1a7ba0;
+            --cyan-bg: #d7eef7;
+            --red: #d93a4a;
+            --gold: #f0b429;
+            --muted: #6f6d5c;
+            --font-px: "Press Start 2P", ui-monospace, monospace;
+            --font-b: "Manrope", system-ui, -apple-system, sans-serif;
+            --sh: 6px 6px 0 var(--ink);
+            --sh-sm: 4px 4px 0 var(--ink);
+            --sh-xs: 3px 3px 0 var(--ink);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(rgba(29, 31, 42, .05) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(29, 31, 42, .05) 2px, transparent 2px);
+            background-size: 16px 16px;
+            color: var(--ink);
+            font-family: var(--font-b);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img,
+        svg,
+        canvas {
+            display: block;
+            max-width: 100%
+        }
+
+        canvas {
+            image-rendering: pixelated;
+            image-rendering: crisp-edges
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: inherit
+        }
+
+        ::selection {
+            background: var(--volt);
+            color: var(--ink)
+        }
+
+        .wrap {
+            width: min(1200px, 92vw);
+            margin-inline: auto;
+            position: relative;
+            z-index: 1
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo-txt,
+        .step .n,
+        .timer .big,
+        .fc-val,
+        .side-card h3,
+        .master h3,
+        .success h3,
+        .urgent h3 {
+            font-family: var(--font-px);
+            font-weight: 400;
+        }
+
+        ::-webkit-scrollbar {
+            width: 14px;
+            height: 14px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+            border-left: 3px solid var(--ink)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--ink);
+            border: 3px solid var(--bg2)
+        }
+
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            width: 0;
+            z-index: 200;
+            background: var(--volt);
+            border-bottom: 2px solid var(--ink)
+        }
+
+        .ticker {
+            position: relative;
+            z-index: 60;
+            background: var(--ink);
+            border-bottom: 4px solid var(--ink);
+            overflow: hidden;
+            height: 34px;
+            display: flex;
+            align-items: center
+        }
+
+        .ticker-track {
+            display: flex;
+            gap: 44px;
+            white-space: nowrap;
+            animation: tick 30s linear infinite;
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--volt-lt)
+        }
+
+        .ticker:hover .ticker-track {
+            animation-play-state: paused
+        }
+
+        .ticker-track b {
+            color: #fff;
+            font-weight: 800
+        }
+
+        .ticker-track .dot {
+            color: var(--orange-lt)
+        }
+
+        @keyframes tick {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--panel);
+            border-bottom: 4px solid var(--ink);
+            transition: .2s
+        }
+
+        header.stuck {
+            box-shadow: 0 6px 0 rgba(29, 31, 42, .18)
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            height: 80px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo .mark {
+            width: 44px;
+            height: 44px;
+            flex: 0 0 44px;
+            background: var(--ink);
+            border: 3px solid var(--ink);
+            display: grid;
+            place-items: center;
+            box-shadow: var(--sh-xs)
+        }
+
+        .logo .mark canvas {
+            width: 26px;
+            height: 26px
+        }
+
+        .logo-txt {
+            font-size: 13px;
+            letter-spacing: -.01em;
+            line-height: 1.7
+        }
+
+        .logo-txt i {
+            font-style: normal;
+            color: var(--orange)
+        }
+
+        .logo-txt small {
+            display: block;
+            font-family: var(--font-b);
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: .18em;
+            color: var(--muted);
+            margin-top: 5px;
+            text-transform: uppercase
+        }
+
+        .menu {
+            display: flex;
+            gap: 4px;
+            margin-left: auto
+        }
+
+        .menu a {
+            padding: 10px 12px;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--ink2);
+            transition: .12s;
+            border: 3px solid transparent
+        }
+
+        .menu a:hover {
+            color: var(--ink);
+            background: var(--volt-bg);
+            border-color: var(--ink)
+        }
+
+        .head-cta {
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .phone-btn {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+            text-align: right;
+            gap: 3px
+        }
+
+        .phone-btn b {
+            font-size: 15px;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums
+        }
+
+        .phone-btn small {
+            font-size: 10.5px;
+            color: var(--muted);
+            font-weight: 700
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 14px 18px;
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh-sm);
+            font-family: var(--font-b);
+            font-size: 13.5px;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform .1s, box-shadow .1s;
+            background: var(--panel);
+            color: var(--ink);
+        }
+
+        .btn canvas {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 16px
+        }
+
+        .btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--ink)
+        }
+
+        .btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 var(--ink)
+        }
+
+        .btn-urgent {
+            background: var(--orange);
+            color: #fff
+        }
+
+        .btn-primary {
+            background: var(--volt);
+            color: var(--ink)
+        }
+
+        .btn-ghost {
+            background: var(--panel)
+        }
+
+        .btn-sm {
+            padding: 11px 14px;
+            font-size: 11.5px;
+            border-width: 3px;
+            box-shadow: var(--sh-xs)
+        }
+
+        .btn-sm:hover {
+            box-shadow: 5px 5px 0 var(--ink)
+        }
+
+        .burger {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border: 4px solid var(--ink);
+            background: var(--panel);
+            box-shadow: var(--sh-xs);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center
+        }
+
+        .burger span {
+            display: block;
+            width: 20px;
+            height: 3px;
+            background: var(--ink);
+            position: relative
+        }
+
+        .burger span::before,
+        .burger span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background: var(--ink)
+        }
+
+        .burger span::before {
+            top: -7px
+        }
+
+        .burger span::after {
+            top: 7px
+        }
+
+        .burger.on span {
+            background: transparent
+        }
+
+        .burger.on span::before {
+            transform: rotate(45deg);
+            top: 0
+        }
+
+        .burger.on span::after {
+            transform: rotate(-45deg);
+            top: 0
+        }
+
+        .hero {
+            padding: 72px 0 56px
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center
+        }
+
+        h1 {
+            font-size: clamp(26px, 3.4vw, 42px);
+            line-height: 1.75;
+            letter-spacing: -.01em;
+            margin: 0 0 40px
+        }
+
+        h1 .hl {
+            color: var(--orange-lt);
+            background: var(--ink);
+            padding: 4px 12px;
+            display: inline-block;
+            box-shadow: var(--sh-sm)
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: var(--sh-xs);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            line-height: 1.5
+        }
+
+        .chip canvas {
+            width: 14px;
+            height: 14px
+        }
+
+        .scene {
+            position: relative;
+            background: var(--ink);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            overflow: hidden
+        }
+
+        .scene canvas {
+            width: 100%;
+            height: auto
+        }
+
+        .float-card {
+            position: absolute;
+            background: rgba(17, 18, 35, .9);
+            border: 3px solid var(--volt);
+            padding: 9px 11px;
+            color: #fff;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, .6);
+            animation: bob 1.6s steps(2) infinite;
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-4px)
+            }
+        }
+
+        .fc-1 {
+            top: 12px;
+            left: 12px
+        }
+
+        .fc-2 {
+            bottom: 12px;
+            right: 12px;
+            animation-delay: -.8s
+        }
+
+        .fc-label {
+            font-family: var(--font-b);
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--volt-lt);
+            letter-spacing: .14em;
+            margin-bottom: 7px;
+            text-transform: uppercase
+        }
+
+        .fc-val {
+            font-size: 10px;
+            line-height: 1.7
+        }
+
+        .fc-val em {
+            font-style: normal;
+            color: var(--volt)
+        }
+
+        .fc-sub {
+            font-family: var(--font-b);
+            font-size: 10px;
+            font-weight: 700;
+            color: #9aa0b8;
+            margin-top: 5px
+        }
+
+        section {
+            padding: 64px 0;
+            position: relative
+        }
+
+        .sec-head {
+            margin-bottom: 36px
+        }
+
+        .kicker {
+            font-size: 11.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            color: var(--volt-dk);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 14px
+        }
+
+        .kicker::before {
+            content: "▶";
+            font-size: 9px;
+            color: var(--orange);
+            animation: blinkc 1.1s steps(2) infinite
+        }
+
+        @keyframes blinkc {
+            50% {
+                opacity: .15
+            }
+        }
+
+        h2 {
+            font-size: clamp(15px, 2vw, 22px);
+            line-height: 1.75
+        }
+
+        .sec-head p {
+            color: var(--muted);
+            max-width: 660px;
+            font-size: 15px;
+            margin-top: 14px;
+            font-weight: 600
+        }
+
+        .urgent {
+            background: var(--ink);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            padding: 30px;
+            color: var(--panel)
+        }
+
+        .urgent-top {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 26px
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #111223;
+            border: 3px solid var(--orange);
+            padding: 12px 16px
+        }
+
+        .timer .big {
+            font-size: 26px;
+            color: var(--orange-lt);
+            line-height: 1
+        }
+
+        .timer .lbl {
+            font-size: 10px;
+            font-weight: 700;
+            color: #c9c2a8;
+            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: .1em
+        }
+
+        .urgent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .ucard {
+            background: #14162a;
+            border: 3px solid #3d4160;
+            padding: 20px;
+            transition: .12s
+        }
+
+        .ucard:hover {
+            border-color: var(--volt);
+            transform: translate(-3px, -3px);
+            box-shadow: 5px 5px 0 var(--volt-dk)
+        }
+
+        .ucard .ic {
+            width: 44px;
+            height: 44px;
+            background: #0d0e1c;
+            border: 3px solid #3d4160;
+            display: grid;
+            place-items: center;
+            margin-bottom: 16px
+        }
+
+        .ucard .ic canvas {
+            width: 26px;
+            height: 26px
+        }
+
+        .ucard h3 {
+            font-size: 11px;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.9
+        }
+
+        .ucard p {
+            font-size: 14px;
+            color: #a9adc2;
+            line-height: 1.62
+        }
+
+        .ucard b {
+            color: var(--volt-lt);
+            font-weight: 800;
+            font-size: 13px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px
+        }
+
+        .tab {
+            padding: 12px 16px;
+            border: 3px solid var(--ink);
+            background: var(--panel);
+            box-shadow: var(--sh-xs);
+            font-size: 12.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .03em;
+            cursor: pointer;
+            transition: .12s;
+            color: var(--ink2)
+        }
+
+        .tab:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--ink);
+            color: var(--ink)
+        }
+
+        .tab.on {
+            background: var(--volt);
+            color: var(--ink)
+        }
+
+        .panel {
+            display: none
+        }
+
+        .panel.on {
+            display: block;
+            animation: fade .2s steps(3)
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        .rows {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh)
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 18px;
+            align-items: center;
+            padding: 17px 20px;
+            border-bottom: 3px dashed rgba(29, 31, 42, .22);
+            transition: .1s;
+            position: relative
+        }
+
+        .row:last-child {
+            border-bottom: 0
+        }
+
+        .row:hover {
+            background: var(--volt-bg)
+        }
+
+        .row:hover::before {
+            content: "▶";
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 9px;
+            color: var(--orange)
+        }
+
+        .row .name {
+            font-weight: 800;
+            font-size: 15.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-left: 8px
+        }
+
+        .tag {
+            font-size: 9.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            padding: 5px 7px;
+            background: var(--volt);
+            border: 2px solid var(--ink);
+            color: var(--ink);
+            line-height: 1.2
+        }
+
+        .tag.hot {
+            background: var(--orange);
+            color: #fff
+        }
+
+        .row .desc {
+            font-size: 13px;
+            color: var(--muted);
+            max-width: 400px;
+            padding-left: 8px;
+            font-weight: 600
+        }
+
+        .row .time {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--cyan-dk);
+            white-space: nowrap
+        }
+
+        .row .price {
+            font-size: 16px;
+            font-weight: 800;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 13.5px;
+            color: var(--ink2);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            padding: 16px;
+            box-shadow: var(--sh-xs);
+            font-weight: 600
+        }
+
+        .note canvas {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            margin-top: 2px
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px
+        }
+
+        .step {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            padding: 20px;
+            transition: .12s
+        }
+
+        .step:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 var(--ink)
+        }
+
+        .st-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 10px
+        }
+
+        .st-top canvas {
+            width: 26px;
+            height: 26px
+        }
+
+        .step .tt {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--ink);
+            background: var(--volt-lt);
+            border: 2px solid var(--ink);
+            padding: 5px 8px;
+            text-transform: uppercase;
+            letter-spacing: .04em
+        }
+
+        .step .n {
+            font-size: 24px;
+            color: var(--volt);
+            -webkit-text-stroke: 2px var(--ink);
+            margin-bottom: 14px;
+            line-height: 1
+        }
+
+        .step h3 {
+            font-size: 10px;
+            line-height: 2;
+            margin-bottom: 12px
+        }
+
+        .step p {
+            font-size: 13.5px;
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .zones {
+            display: grid;
+            grid-template-columns: .95fr 1.05fr;
+            gap: 30px;
+            align-items: start
+        }
+
+        .map {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            padding: 0;
+            position: relative;
+            overflow: hidden
+        }
+
+        .map canvas {
+            width: 100%;
+            height: auto
+        }
+
+        .mlbl {
+            position: absolute;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--ink2);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            pointer-events: none;
+            white-space: nowrap
+        }
+
+        .mlbl.base {
+            color: var(--volt-dk);
+            font-size: 10px
+        }
+
+        .mlbl.river {
+            color: var(--cyan-dk)
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--ink2);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            padding: 12px 16px;
+            border-top: 3px dashed rgba(29, 31, 42, .25);
+            background: var(--panel2)
+        }
+
+        .map-legend i {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 6px;
+            border: 2px solid var(--ink);
+            vertical-align: -1px
+        }
+
+        .search {
+            position: relative;
+            margin-bottom: 14px
+        }
+
+        .search input {
+            width: 100%;
+            padding: 15px 16px 15px 48px;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: var(--sh-xs);
+            font-size: 14px;
+            outline: none;
+            font-weight: 600
+        }
+
+        .search input:focus {
+            background: #fff;
+            box-shadow: 5px 5px 0 var(--volt-dk)
+        }
+
+        .search canvas {
+            position: absolute;
+            left: 15px;
+            top: 16px;
+            width: 22px;
+            height: 22px
+        }
+
+        .zlist {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            max-height: 460px;
+            overflow-y: auto
+        }
+
+        .zrow {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 14px;
+            align-items: center;
+            padding: 14px 18px;
+            border-bottom: 3px dashed rgba(29, 31, 42, .2);
+            font-size: 14.5px;
+            transition: .1s
+        }
+
+        .zrow:last-child {
+            border-bottom: 0
+        }
+
+        .zrow:hover {
+            background: var(--volt-bg)
+        }
+
+        .zrow .zn {
+            font-weight: 800
+        }
+
+        .zrow .zn span {
+            font-weight: 600;
+            color: var(--muted);
+            font-size: 12.5px
+        }
+
+        .zrow .zt {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--cyan-dk);
+            white-space: nowrap
+        }
+
+        .pill {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 6px 8px;
+            border: 2px solid var(--ink);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            white-space: nowrap;
+            line-height: 1.2
+        }
+
+        .pill.fast {
+            background: var(--volt-lt)
+        }
+
+        .pill.mid {
+            background: var(--cyan-bg)
+        }
+
+        .pill.far {
+            background: var(--orange-bg)
+        }
+
+        .no-result {
+            padding: 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700
+        }
+
+        .base-note {
+            margin-top: 16px;
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            border-left: 12px solid var(--volt);
+            box-shadow: var(--sh-sm);
+            padding: 16px 18px;
+            display: flex;
+            gap: 13px;
+            align-items: flex-start
+        }
+
+        .base-note canvas {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            margin-top: 2px
+        }
+
+        .base-note b {
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.5;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .base-note span {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-weight: 600
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            max-width: 880px
+        }
+
+        .master {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            transition: .12s;
+            display: flex;
+            flex-direction: column
+        }
+
+        .master:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 var(--ink)
+        }
+
+        .master .ava {
+            background: var(--panel2);
+            border-bottom: 4px solid var(--ink);
+            position: relative;
+            display: grid;
+            place-items: center;
+            padding: 16px
+        }
+
+        .master .ava canvas {
+            width: 128px;
+            height: 128px
+        }
+
+        .master .status {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 9.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            padding: 6px 8px;
+            background: var(--volt-lt);
+            border: 2px solid var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            line-height: 1
+        }
+
+        .master .status i {
+            width: 6px;
+            height: 6px;
+            background: var(--ink);
+            animation: blinkc 1.4s steps(2) infinite
+        }
+
+        .master .status.busy {
+            background: var(--orange-bg)
+        }
+
+        .master .info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column
+        }
+
+        .master h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.8
+        }
+
+        .master .role {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--volt-dk);
+            margin-bottom: 14px;
+            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .master .about {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.62;
+            margin-bottom: 14px;
+            font-weight: 600
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px
+        }
+
+        .skills span {
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 6px 8px;
+            background: var(--volt-bg);
+            border: 2px solid var(--ink);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            line-height: 1.2
+        }
+
+        .master .meta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--muted);
+            border-top: 3px dashed rgba(29, 31, 42, .22);
+            padding-top: 14px;
+            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: .04em
+        }
+
+        .master .meta b {
+            color: var(--ink)
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 30px;
+            align-items: start
+        }
+
+        .form-card {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            padding: 26px
+        }
+
+        .f-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        .field {
+            margin-bottom: 15px
+        }
+
+        .field label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--muted);
+            margin-bottom: 9px
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 13px 14px;
+            background: #fff;
+            border: 3px solid var(--ink);
+            font-size: 14.5px;
+            outline: none;
+            transition: .1s;
+            font-family: var(--font-b);
+            font-weight: 600;
+            box-shadow: inset 3px 3px 0 rgba(29, 31, 42, .07);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 92px
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #a6a294;
+            font-weight: 500
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            background: var(--volt-bg);
+            box-shadow: 4px 4px 0 var(--volt-dk)
+        }
+
+        .field input.err,
+        .field textarea.err {
+            background: #ffe2e5;
+            box-shadow: 4px 4px 0 var(--red)
+        }
+
+        .field .msg {
+            font-size: 11.5px;
+            color: var(--red);
+            margin-top: 7px;
+            display: none;
+            font-weight: 800
+        }
+
+        .field.bad .msg {
+            display: block
+        }
+
+        .urg {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px
+        }
+
+        .urg label {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-start;
+            cursor: pointer;
+            padding: 12px;
+            border: 3px solid var(--ink);
+            background: #fff;
+            transition: .1s;
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .urg label b {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: .04em
+        }
+
+        .urg label small {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 600;
+            line-height: 1.4
+        }
+
+        .urg input {
+            display: none
+        }
+
+        .urg label.sel {
+            background: var(--orange-bg);
+            box-shadow: 4px 4px 0 var(--ink);
+            transform: translate(-2px, -2px)
+        }
+
+        .agree {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 14px;
+            line-height: 1.6;
+            font-weight: 600
+        }
+
+        .agree a {
+            color: var(--volt-dk);
+            text-decoration: underline;
+            font-weight: 800
+        }
+
+        .submit {
+            width: 100%;
+            margin-top: 18px;
+            padding: 18px;
+            font-size: 13px
+        }
+
+        .success {
+            display: none;
+            text-align: center;
+            padding: 26px 8px
+        }
+
+        .success.on {
+            display: block;
+            animation: fade .25s steps(3)
+        }
+
+        .success .ok {
+            width: 72px;
+            height: 72px;
+            background: var(--volt-lt);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh-sm);
+            display: grid;
+            place-items: center;
+            margin: 0 auto 20px;
+            font-family: var(--font-b);
+            font-weight: 800;
+            font-size: 30px
+        }
+
+        .success h3 {
+            font-size: 12px;
+            margin-bottom: 14px;
+            line-height: 2
+        }
+
+        .success p {
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 380px;
+            margin: 0 auto;
+            font-weight: 600
+        }
+
+        .success .num {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--volt-dk);
+            margin-top: 16px;
+            text-transform: uppercase;
+            letter-spacing: .05em
+        }
+
+        .side-card {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            padding: 24px;
+            margin-bottom: 18px
+        }
+
+        .side-card h3 {
+            font-size: 12px;
+            margin-bottom: 12px;
+            line-height: 1.9
+        }
+
+        .side-card>p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-weight: 600
+        }
+
+        .messengers {
+            display: grid;
+            gap: 10px
+        }
+
+        .mbtn {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 15px;
+            border: 3px solid var(--ink);
+            background: #fff;
+            font-weight: 800;
+            font-size: 14.5px;
+            transition: .12s;
+            cursor: pointer;
+            box-shadow: var(--sh-xs)
+        }
+
+        a.mbtn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--ink);
+            background: var(--volt-bg)
+        }
+
+        .mbtn .mi {
+            width: 38px;
+            height: 38px;
+            flex: 0 0 38px;
+            display: grid;
+            place-items: center;
+            border: 3px solid var(--ink)
+        }
+
+        .mbtn .mi canvas {
+            width: 20px;
+            height: 20px
+        }
+
+        .mi.tg {
+            background: var(--cyan-bg)
+        }
+
+        .mi.ph {
+            background: var(--orange-bg)
+        }
+
+        .mi.pin {
+            background: var(--volt-bg)
+        }
+
+        .mbtn small {
+            display: block;
+            font-weight: 600;
+            font-size: 11.5px;
+            color: var(--muted);
+            margin-top: 3px
+        }
+
+        .addr-block {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 3px dashed rgba(29, 31, 42, .22);
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-weight: 600
+        }
+
+        .addr-block b {
+            color: var(--ink)
+        }
+
+        .feed {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: var(--sh);
+            overflow: hidden
+        }
+
+        .feed-head {
+            padding: 14px 18px;
+            border-bottom: 3px dashed rgba(29, 31, 42, .22);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: var(--ink2)
+        }
+
+        .feed-head .live {
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border: 2px solid var(--ink);
+            animation: blinkc 1.2s steps(2) infinite
+        }
+
+        .feed-body {
+            padding: 4px 0
+        }
+
+        .fitem {
+            display: flex;
+            gap: 12px;
+            padding: 12px 18px;
+            border-bottom: 2px dashed rgba(29, 31, 42, .16);
+            align-items: center
+        }
+
+        .fitem:last-child {
+            border-bottom: 0
+        }
+
+        .fitem .fdot {
+            width: 9px;
+            height: 9px;
+            background: var(--volt);
+            border: 2px solid var(--ink);
+            flex: 0 0 9px
+        }
+
+        .fitem .ftxt {
+            font-size: 13.5px;
+            color: var(--ink2);
+            line-height: 1.45;
+            font-weight: 600
+        }
+
+        .fitem .ftxt b {
+            color: var(--ink)
+        }
+
+        .fitem .ftime {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--muted);
+            white-space: nowrap
+        }
+
+        footer {
+            border-top: 4px solid var(--ink);
+            background: var(--ink);
+            color: var(--panel);
+            padding: 50px 0 26px;
+            margin-top: 20px
+        }
+
+        .f-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 32px;
+            margin-bottom: 36px
+        }
+
+        .f-col h4 {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: var(--volt);
+            margin-bottom: 18px
+        }
+
+        .f-col a {
+            display: block;
+            font-size: 14px;
+            color: #b8bccf;
+            padding: 5px 0;
+            transition: .12s;
+            font-weight: 600
+        }
+
+        .f-col a:hover {
+            color: var(--volt-lt);
+            transform: translateX(4px)
+        }
+
+        .f-col p {
+            font-size: 14px;
+            color: #b8bccf;
+            line-height: 1.65;
+            font-weight: 600
+        }
+
+        .f-col .logo-txt {
+            color: #fff
+        }
+
+        .f-col .logo-txt small {
+            color: #8f94ab
+        }
+
+        .f-col .mark {
+            background: var(--volt)
+        }
+
+        .f-bottom {
+            border-top: 3px dashed rgba(251, 247, 232, .22);
+            padding-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-size: 12px;
+            color: #8f94ab;
+            font-weight: 600
+        }
+
+        .soc {
+            display: flex;
+            gap: 9px;
+            margin-top: 18px
+        }
+
+        .soc a {
+            width: 44px;
+            height: 44px;
+            background: #14162a;
+            border: 3px solid #3d4160;
+            display: grid;
+            place-items: center;
+            transition: .12s;
+            padding: 0
+        }
+
+        .soc a:hover {
+            border-color: var(--volt);
+            transform: translateY(-3px)
+        }
+
+        .soc canvas {
+            width: 20px;
+            height: 20px
+        }
+
+        .dock {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .dock a,
+        .dock button {
+            width: 54px;
+            height: 54px;
+            border: 4px solid var(--ink);
+            background: var(--panel);
+            box-shadow: var(--sh-sm);
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: .12s;
+            padding: 0
+        }
+
+        .dock a:hover,
+        .dock button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--ink)
+        }
+
+        .dock canvas {
+            width: 24px;
+            height: 24px
+        }
+
+        .dock .d-call {
+            background: var(--orange)
+        }
+
+        .dock .d-tg {
+            background: var(--cyan-bg)
+        }
+
+        .dock .d-up {
+            opacity: 0;
+            pointer-events: none;
+            background: var(--volt-lt)
+        }
+
+        .dock .d-up.on {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .mobile-bar {
+            display: none;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 95;
+            background: var(--panel);
+            border-top: 4px solid var(--ink);
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .mobile-bar a {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px;
+            border: 3px solid var(--ink);
+            box-shadow: var(--sh-xs);
+            font-size: 12.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .04em
+        }
+
+        .mobile-bar canvas {
+            width: 16px;
+            height: 16px
+        }
+
+        .mb-call {
+            background: var(--orange);
+            color: #fff
+        }
+
+        .mb-form {
+            background: var(--volt);
+            color: var(--ink)
+        }
+
+        #toast {
+            position: fixed;
+            left: 50%;
+            bottom: 32px;
+            transform: translate(-50%, 180%);
+            z-index: 300;
+            background: var(--ink);
+            border: 4px solid var(--volt);
+            padding: 15px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            transition: transform .25s steps(4);
+            max-width: 90vw;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, .35)
+        }
+
+        #toast.on {
+            transform: translate(-50%, 0)
+        }
+
+        #toast canvas {
+            width: 18px;
+            height: 18px
+        }
+
+        #toast span {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--volt-lt);
+            line-height: 1.5
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .28s steps(3), transform .28s steps(3)
+        }
+
+        [data-reveal].in {
+            opacity: 1;
+            transform: none
+        }
+
+        .d1 {
+            transition-delay: .07s
+        }
+
+        .d2 {
+            transition-delay: .14s
+        }
+
+        .d3 {
+            transition-delay: .21s
+        }
+
+        @media(max-width:1040px) {
+            .hero {
+                padding: 56px 0 44px
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px
+            }
+
+            h1 {
+                font-size: clamp(22px, 4.5vw, 34px);
+                margin-bottom: 32px
+            }
+
+            .urgent-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .zones,
+            .cta-grid {
+                grid-template-columns: 1fr
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:880px) {
+            .menu {
+                position: fixed;
+                inset: 80px 0 auto 0;
+                background: var(--panel);
+                border-bottom: 4px solid var(--ink);
+                flex-direction: column;
+                padding: 14px 5vw 22px;
+                transform: translateY(-140%);
+                transition: transform .25s steps(4);
+                margin: 0;
+            }
+
+            .menu.open {
+                transform: none
+            }
+
+            .menu a {
+                font-size: 15px;
+                padding: 14px 8px;
+                border-bottom: 3px dashed rgba(29, 31, 42, .2)
+            }
+
+            .burger {
+                display: flex;
+                margin-left: auto
+            }
+
+            .phone-btn {
+                display: none
+            }
+
+            .nav .btn {
+                display: none
+            }
+
+            .dock {
+                display: none
+            }
+
+            .mobile-bar {
+                display: flex
+            }
+
+            body {
+                padding-bottom: 74px
+            }
+
+            section {
+                padding: 48px 0
+            }
+
+            .row {
+                grid-template-columns: 1fr auto;
+                gap: 8px 14px;
+                padding: 15px 16px
+            }
+
+            .row .desc {
+                grid-column: 1/-1;
+                order: 3
+            }
+
+            .row .time {
+                order: 4
+            }
+
+            .row .price {
+                order: 2
+            }
+
+            .row .btn-sm {
+                display: none
+            }
+
+            .f-row {
+                grid-template-columns: 1fr
+            }
+
+            .form-card {
+                padding: 20px 16px
+            }
+
+            .team {
+                grid-template-columns: 1fr;
+                max-width: none
+            }
+
+            .urgent {
+                padding: 20px 16px
+            }
+        }
+
+        @media(max-width:540px) {
+            .hero {
+                padding: 44px 0 36px
+            }
+
+            h1 {
+                font-size: clamp(19px, 5.8vw, 26px);
+                margin-bottom: 28px;
+                line-height: 1.85
+            }
+
+            .urgent-grid,
+            .steps {
+                grid-template-columns: 1fr
+            }
+
+            .urg {
+                grid-template-columns: 1fr
+            }
+
+            .f-grid {
+                grid-template-columns: 1fr
+            }
+
+            .float-card {
+                transform: scale(.85)
+            }
+
+            .fc-1 {
+                transform-origin: top left
+            }
+
+            .fc-2 {
+                transform-origin: bottom right
+            }
+
+            .mlbl {
+                font-size: 7.5px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progress"></div>
+
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+    <header id="hdr">
+        <div class="wrap nav">
+            <a href="#top" class="logo">
+                <span class="mark"><canvas data-sprite="bolt" data-color="volt"></canvas></span>
+                <span class="logo-txt">ВОЛЬТ<i>·</i>МОБИЛЬ<small>Брагино · Ярославль</small></span>
+            </a>
+            <nav class="menu" id="menu">
+                <a href="#urgent">Курьерам</a>
+                <a href="#services">Цены</a>
+                <a href="#zones">Брагино</a>
+                <a href="#team">Мастера</a>
+                <a href="#form">Вызвать</a>
+            </nav>
+            <div class="head-cta">
+                <a href="tel:+79910010001" class="phone-btn">
+                    <b>+7 (991) 001-00-01</b>
+                    <small>Брагино · круглосуточно</small>
+                </a>
+                <a href="#form" class="btn btn-primary btn-sm">Вызвать мастера</a>
+                <button class="burger" id="burger" aria-label="Меню"><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero">
+            <div class="wrap hero-inner">
+                <div>
+                    <h1 data-reveal>Электровелик встал —<br>смена не должна <span class="hl">останавливаться</span></h1>
+                    <div class="hero-actions" data-reveal class="d1">
+                        <a href="#form" class="btn btn-urgent"><canvas data-sprite="bolt"
+                                data-color="white"></canvas>Срочный выезд</a>
+                        <a href="tel:+79910010001" class="btn btn-ghost"><canvas data-sprite="phone"
+                                data-color="ink"></canvas>+7 991 001-00-01</a>
+                    </div>
+                    <div class="chips" data-reveal class="d2">
+                        <span class="chip"><canvas data-sprite="coin" data-color="volt-dk"></canvas>Оплата после
+                            ремонта</span>
+                    </div>
+                </div>
+
+                <div class="visual" data-reveal class="d2">
+                    <div class="scene">
+                        <canvas id="heroCanvas" width="200" height="126"
+                            aria-label="Пиксель-арт: курьер на электровелосипеде в Брагино"></canvas>
+                        <div class="float-card fc-1">
+                            <div class="fc-label">Мастер · Брагино</div>
+                            <div class="fc-val"><em>1.1 КМ</em> ОТ ВАС</div>
+                            <div class="fc-sub" id="etaLine">выезд через 8 минут</div>
+                        </div>
+                        <div class="float-card fc-2">
+                            <div class="fc-label">Статус ремонта</div>
+                            <div class="fc-val">МОТОР-КОЛЕСО <em>ОК</em></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= URGENT ================= -->
+        <section id="urgent" style="padding-top:10px">
+            <div class="wrap">
+                <div class="urgent" data-reveal>
+                    <div class="urgent-top">
+                        <div class="timer">
+                            <div class="big" id="avgEta">14</div>
+                            <div class="lbl">минут<br>средний выезд<br>по Брагино</div>
+                        </div>
+                    </div>
+                    <div class="urgent-grid">
+                        <div class="ucard" data-reveal>
+                            <div class="ic"><canvas data-sprite="bolt" data-color="orange"></canvas></div>
+                            <h3>Вне очереди</h3>
+                            <p>Заявка с пометкой «курьер на смене» уходит ближайшему свободному мастеру <b>за 90
+                                    секунд</b>, минуя общую очередь.</p>
+                        </div>
+                        <div class="ucard" data-reveal class="d1">
+                            <div class="ic"><canvas data-sprite="wrench" data-color="volt"></canvas></div>
+                            <h3>Ремонт на месте</h3>
+                            <p>Прокол, колодки, контроллер, ручка газа, разъёмы, BMS, переборка АКБ — делаем у тротуара
+                                или в холле ТЦ.</p>
+                        </div>
+                        <div class="ucard" data-reveal class="d2">
+                            <div class="ic"><canvas data-sprite="coin" data-color="gold"></canvas></div>
+                            <h3>Оплата после смены</h3>
+                            <p>Курьерам — отсрочка до 7 дней и оплата по СБП прямо на месте. Чек приходит в мессенджер.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section id="services">
+            <div class="wrap">
+                <div class="sec-head" data-reveal>
+                    <div class="kicker">Услуги</div>
+                    <h2>Цены фиксируем до начала работ</h2>
+                    <p>Выезд по Брагино — 700 ₽, включается в счёт при любом ремонте. Точную цену называем после
+                        бесплатной диагностики по фото или на месте.</p>
+                </div>
+
+                <div class="tabs" data-reveal id="tabs">
+                    <button class="tab on" data-tab="elec">⚡ Электрика</button>
+                    <button class="tab" data-tab="bat">Батареи и АКБ</button>
+                    <button class="tab" data-tab="mech">Механика</button>
+                    <button class="tab" data-tab="diag">Диагностика и ТО</button>
+                </div>
+
+                <div class="panel on" id="tab-elec" data-reveal>
+                    <div class="rows">
+                        <div class="row">
+                            <div class="name">Ремонт мотор-колеса <span class="tag hot">топ</span></div>
+                            <div class="desc">Перемотка, замена датчиков Холла, подшипников, магнитов</div>
+                            <div class="time">60–120 мин</div>
+                            <div class="price">от 3 500 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт мотор-колеса">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Замена / ремонт контроллера</div>
+                            <div class="desc">Подбор под напряжение и ток, перепайка разъёмов</div>
+                            <div class="time">30–50 мин</div>
+                            <div class="price">от 2 200 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замена контроллера">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Ручка газа, курок, тормозные датчики</div>
+                            <div class="desc">Замена на новые из мобильного склада, настройка отсечки</div>
+                            <div class="time">15–25 мин</div>
+                            <div class="price">от 800 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт ручки газа">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Дисплей и панель управления</div>
+                            <div class="desc">Замена, сброс ошибок, настройка уровней ассиста</div>
+                            <div class="time">20–40 мин</div>
+                            <div class="price">от 1 500 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт дисплея">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Проводка, разъёмы, пайка</div>
+                            <div class="desc">Поиск обрыва, влагозащита, замена жгутов</div>
+                            <div class="time">30–60 мин</div>
+                            <div class="price">от 1 100 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт проводки">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Настройка контроллера и дисплея</div>
+                            <div class="desc">Калибровка параметров, лимиты, режимы ассиста под ваш стиль</div>
+                            <div class="time">20–30 мин</div>
+                            <div class="price">от 1 400 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Настройка контроллера">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Кареточный мотор (Bafang и аналоги)</div>
+                            <div class="desc">Разборка, замена шестерней, смазка, датчик момента</div>
+                            <div class="time">90–150 мин</div>
+                            <div class="price">от 4 900 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт кареточного мотора">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" id="tab-bat">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="name">Переборка АКБ на новых ячейках <span class="tag hot">топ</span></div>
+                            <div class="desc">18650/21700, точечная сварка, тест ёмкости до и после</div>
+                            <div class="time">3–6 ч</div>
+                            <div class="price">от 6 200 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Переборка АКБ">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Замена BMS-платы</div>
+                            <div class="desc">Подбор по току и схеме, балансировка после установки</div>
+                            <div class="time">40–80 мин</div>
+                            <div class="price">от 3 100 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замена BMS">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Балансировка ячеек</div>
+                            <div class="desc">Устранение перекоса напряжений, байк снова едет дальше</div>
+                            <div class="time">60–90 мин</div>
+                            <div class="price">от 2 000 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Балансировка ячеек">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Ремонт после воды и КЗ</div>
+                            <div class="desc">Сушка, чистка, замена выгоревших дорожек и разъёмов</div>
+                            <div class="time">60–120 мин</div>
+                            <div class="price">от 2 600 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт АКБ после воды">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Увеличение ёмкости</div>
+                            <div class="desc">Переделка под больший запас хода в штатном корпусе</div>
+                            <div class="time">1–2 дня</div>
+                            <div class="price">от 11 900 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Увеличение ёмкости АКБ">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Ремонт зарядного устройства</div>
+                            <div class="desc">Замена предохранителя, разъёма, вентилятора, выходного каскада</div>
+                            <div class="time">30–60 мин</div>
+                            <div class="price">от 1 300 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт зарядки">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" id="tab-mech">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="name">Замена камеры на месте <span class="tag">15 мин</span></div>
+                            <div class="desc">Камера в наличии 12"/16"/20"/24"/26"/27.5"/29", антипрокольная</div>
+                            <div class="time">15–20 мин</div>
+                            <div class="price">от 600 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замена камеры на месте">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Покрышка / бескамерный ремонт</div>
+                            <div class="desc">Герметик, жгут, замена покрышки из складского запаса</div>
+                            <div class="time">20–35 мин</div>
+                            <div class="price">от 800 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замена покрышки">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Спицы и правка колеса</div>
+                            <div class="desc">Замена спиц, натяжение, устранение «восьмёрки»</div>
+                            <div class="time">40–70 мин</div>
+                            <div class="price">от 1 100 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Правка колеса">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Дисковые тормоза и прокачка</div>
+                            <div class="desc">Колодки, роторы, прокачка гидравлики Shimano/Tektro</div>
+                            <div class="time">25–50 мин</div>
+                            <div class="price">от 1 300 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Прокачка тормозов">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Цепь, кассета, натяжитель</div>
+                            <div class="desc">Замена цепи с замером растяжения, настройка переключателя</div>
+                            <div class="time">20–45 мин</div>
+                            <div class="price">от 1 000 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замена цепи">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Каретка, рулевая, подшипники</div>
+                            <div class="desc">Замена узла, смазка, устранение люфта и хруста</div>
+                            <div class="time">40–80 мин</div>
+                            <div class="price">от 1 400 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замена каретки">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Складной механизм и рама</div>
+                            <div class="desc">Устранение люфтов, сварка мелких трещин, усиление узла</div>
+                            <div class="time">60–120 мин</div>
+                            <div class="price">от 2 000 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Ремонт рамы">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel" id="tab-diag">
+                    <div class="rows">
+                        <div class="row">
+                            <div class="name">Выезд + экспресс-диагностика <span class="tag">в счёт</span></div>
+                            <div class="desc">Приезд мастера, поиск неисправности, смета на месте</div>
+                            <div class="time">20 мин</div>
+                            <div class="price">700 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Выезд и диагностика">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Диагностика по фото/видео</div>
+                            <div class="desc">Пришлите в Telegram — скажем причину и вилку цены</div>
+                            <div class="time">10 мин</div>
+                            <div class="price">0 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Диагностика по фото">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Замер реальной ёмкости АКБ</div>
+                            <div class="desc">Разрядный тест, отчёт по ячейкам, рекомендации</div>
+                            <div class="time">40 мин</div>
+                            <div class="price">600 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Замер ёмкости АКБ">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Полное ТО курьерского байка</div>
+                            <div class="desc">Электрика + механика + смазка, чек-лист на 28 пунктов</div>
+                            <div class="time">90 мин</div>
+                            <div class="price">от 2 900 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Полное ТО">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">Предпродажная проверка</div>
+                            <div class="desc">Отчёт для покупки б/у байка: батарея, мотор, рама, пробег</div>
+                            <div class="time">45 мин</div>
+                            <div class="price">1 600 ₽</div><button class="btn btn-ghost btn-sm"
+                                data-order="Предпродажная проверка">Заказать</button>
+                        </div>
+                        <div class="row">
+                            <div class="name">ТО раз в месяц для курьера <span class="tag">выгодно</span></div>
+                            <div class="desc">Осмотр, смазка, подтяжка, проверка АКБ — 4 визита в месяц</div>
+                            <div class="time">по графику</div>
+                            <div class="price">от 7 900 ₽/мес</div><button class="btn btn-ghost btn-sm"
+                                data-order="ТО раз в месяц для курьера">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <canvas data-sprite="info" data-color="volt-dk"></canvas>
+                    <div>Стоимость запчастей (ячейки, контроллеры, камеры, колодки, дисплеи) — отдельно, по прайсу;
+                        мастера возят ходовые позиции с собой. Если нужной детали нет — привезём со склада на Тутаевском
+                        шоссе, 1в в течение 1–3 часов или бесплатно заберём байк в мастерскую и вернём после ремонта.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= STEPS ================= -->
+        <section>
+            <div class="wrap">
+                <div class="sec-head" data-reveal>
+                    <div class="kicker">Процесс</div>
+                    <h2>От звонка до «поехал» — 4 шага</h2>
+                    <p>Никаких «приезжайте к нам через два дня». Работаем там, где вас застала поломка — по всему
+                        Брагино.</p>
+                </div>
+                <div class="steps">
+                    <div class="step" data-reveal>
+                        <div class="st-top"><canvas data-sprite="phone" data-color="cyan"></canvas><span class="tt">2
+                                мин</span></div>
+                        <div class="n">01</div>
+                        <h3>Заявка и фото</h3>
+                        <p>Звонок, Telegram или форма. Просим фото байка и дисплея — часто этого хватает для диагноза.
+                        </p>
+                    </div>
+                    <div class="step" data-reveal class="d1">
+                        <div class="st-top"><canvas data-sprite="bolt" data-color="orange"></canvas><span
+                                class="tt">8–25 мин</span></div>
+                        <div class="n">02</div>
+                        <h3>Мастер в пути</h3>
+                        <p>Отправляем Алексея или Влада — кто ближе к вашей точке. Присылаем имя и геопозицию в чат.</p>
+                    </div>
+                    <div class="step" data-reveal class="d2">
+                        <div class="st-top"><canvas data-sprite="wrench" data-color="volt-dk"></canvas><span
+                                class="tt">20–90 мин</span></div>
+                        <div class="n">03</div>
+                        <h3>Ремонт на месте</h3>
+                        <p>Диагностика, фиксированная смета, ремонт у тротуара или в холле ТЦ. Оплата только после
+                            проверки.</p>
+                    </div>
+                    <div class="step" data-reveal class="d3">
+                        <div class="st-top"><canvas data-sprite="coin" data-color="gold"></canvas><span class="tt">на
+                                месте</span></div>
+                        <div class="n">04</div>
+                        <h3>Проверка и оплата</h3>
+                        <p>Тестируем байк вместе с вами, отправляем чек в мессенджер. Оплата — СБП, картой или
+                            наличными.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ZONES ================= -->
+        <section id="zones">
+            <div class="wrap">
+                <div class="sec-head" data-reveal>
+                    <div class="kicker">География</div>
+                    <h2>Брагино: время подачи мастера</h2>
+                    <p>Работаем только в Брагино и Дзержинском районе — поэтому приезжаем быстро. Найдите свою улицу или
+                        микрорайон.</p>
+                </div>
+                <div class="zones">
+                    <div class="map" data-reveal>
+                        <canvas id="mapCanvas" width="180" height="150" aria-label="Пиксель-карта Брагино"></canvas>
+                        <span class="mlbl base" style="left:52%;top:34%">База · Тутаевское ш., 1в</span>
+                        <span class="mlbl river" style="left:6%;top:56%">Волга</span>
+                        <span class="mlbl" style="left:14%;top:19%">ул. Труфанова</span>
+                        <span class="mlbl" style="left:52%;top:66%">Ленинградский пр-т</span>
+                        <span class="mlbl" style="left:64%;top:15%">ул. Панина</span>
+                        <span class="mlbl" style="left:66%;top:76%">парк</span>
+                        <span class="mlbl" style="left:20%;top:40%">8 мин</span>
+                        <span class="mlbl" style="left:74%;top:44%">15 мин</span>
+                        <div class="map-legend">
+                            <span><i style="background:var(--volt)"></i>мастер свободен</span>
+                            <span><i style="background:var(--cyan)"></i>в пути</span>
+                            <span><i style="background:var(--orange)"></i>срочный вызов</span>
+                        </div>
+                    </div>
+
+                    <div data-reveal class="d1">
+                        <div class="search">
+                            <canvas data-sprite="search" data-color="ink"></canvas>
+                            <input type="text" id="zoneSearch"
+                                placeholder="Ищите Брагино: улица или микрорайон — например, Труфанова">
+                        </div>
+                        <div class="zlist" id="zlist"></div>
+                        <div class="base-note">
+                            <canvas data-sprite="pin" data-color="volt-dk"></canvas>
+                            <span><b>г. Ярославль, Тутаевское шоссе, 1в</b>Мастерская и склад запчастей. Работаем только
+                                по Брагино и Дзержинскому району: Алексей и Влад всегда рядом с вашим маршрутом. Ночью и
+                                в сильный снегопад +10 минут к подаче.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TEAM ================= -->
+        <section id="team">
+            <div class="wrap">
+                <div class="sec-head" data-reveal>
+                    <div class="kicker">Кто приедет</div>
+                    <h2>Два мастера — Алексей и Влад</h2>
+                    <p>Мы не диспетчерский центр, а два мастера, которые живут и работают в Брагино. Знаете, кто
+                        приедет, — заранее.</p>
+                </div>
+                <div class="team" id="teamGrid"></div>
+            </div>
+        </section>
+
+        <!-- ================= FORM ================= -->
+        <section id="form">
+            <div class="wrap">
+                <div class="sec-head" data-reveal>
+                    <div class="kicker">Вызов мастера</div>
+                    <h2>Оставьте заявку — перезвоним за 3 минуты</h2>
+                    <p>Если вы на смене и байк встал — выбирайте «Срочно» и звоните параллельно по телефону: так
+                        быстрее.</p>
+                </div>
+
+                <div class="cta-grid">
+                    <div data-reveal>
+                        <div class="side-card">
+                            <h3>Связаться напрямую</h3>
+                            <p>Круглосуточная линия. Фото поломки в Telegram ускоряет диагностику в два раза.</p>
+                            <div class="messengers">
+                                <a href="tel:+79910010001" class="mbtn"><span class="mi ph"><canvas data-sprite="phone"
+                                            data-color="orange"></canvas></span><span>+7 (991) 001-00-01<small>звонок ·
+                                            Алексей или Влад, 24/7</small></span></a>
+                                <a href="https://t.me/+79910010001" target="_blank" rel="noopener" class="mbtn"><span
+                                        class="mi tg"><canvas data-sprite="tg"
+                                            data-color="cyan"></canvas></span><span>Telegram · @volt_bragino<small>фото
+                                            и геолокация поломки</small></span></a>
+                                <div class="mbtn" style="cursor:default"><span class="mi pin"><canvas data-sprite="pin"
+                                            data-color="volt-dk"></canvas></span><span>Тутаевское шоссе,
+                                        1в<small>Ярославль · мастерская и склад</small></span></div>
+                            </div>
+                            <div class="addr-block">
+                                Зона работы: <b>Брагино и Дзержинский район</b> — Ленинградский проспект, улицы
+                                Труфанова, Панина, Урицкого, Елены Колесовой, Громова, Бабича, 15-й микрорайон, ТРК
+                                «Рио», Дядьково.
+                            </div>
+                        </div>
+
+                        <div class="feed">
+                            <div class="feed-head"><span class="live"></span>Лента выездов · Брагино</div>
+                            <div class="feed-body" id="feedBody"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-card" data-reveal class="d1">
+                        <form id="callForm" novalidate>
+                            <div class="f-row">
+                                <div class="field" id="f-name">
+                                    <label for="name">Как к вам обращаться</label>
+                                    <input type="text" id="name" placeholder="Например, Артём" autocomplete="name">
+                                    <div class="msg">Укажите имя, чтобы мастер знал, как обращаться</div>
+                                </div>
+                                <div class="field" id="f-phone">
+                                    <label for="phone">Телефон</label>
+                                    <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel"
+                                        inputmode="tel">
+                                    <div class="msg">Нужен корректный номер — минимум 10 цифр</div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Срочность</label>
+                                <div class="urg" id="urgBox">
+                                    <label class="sel"><input type="radio" name="urg" value="urgent"
+                                            checked><b>Срочно</b><small>я на смене, байк встал</small></label>
+                                    <label><input type="radio" name="urg" value="today"><b>Сегодня</b><small>в удобное
+                                            окно</small></label>
+                                    <label><input type="radio" name="urg" value="plan"><b>Планово</b><small>ТО, батарея,
+                                            апгрейд</small></label>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="bike">Транспорт</label>
+                                <select id="bike">
+                                    <option>Электровелосипед</option>
+                                    <option>Электровелосипед (карго/грузовой)</option>
+                                    <option>Складной e-bike</option>
+                                    <option>Электросамокат</option>
+                                    <option>Электровелосипед + прицеп</option>
+                                    <option>Другое / не знаю</option>
+                                </select>
+                            </div>
+
+                            <div class="field" id="f-sym">
+                                <label for="sym">Что случилось</label>
+                                <textarea id="sym"
+                                    placeholder="Опишите поломку: что произошло, горит ли дисплей, есть ли тяга, что пробовали сами…"></textarea>
+                                <div class="msg">Опишите проблему хотя бы парой слов — так мастер приедет с нужными
+                                    запчастями</div>
+                            </div>
+
+                            <div class="f-row">
+                                <div class="field">
+                                    <label for="agg">Работаете в доставке?</label>
+                                    <select id="agg">
+                                        <option>Да, курьер — доставка еды</option>
+                                        <option>Да, курьер — экспресс/документы</option>
+                                        <option>Да, курьер — продукты</option>
+                                        <option>Нет, личный велосипед</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="pay">Оплата</label>
+                                    <select id="pay">
+                                        <option>СБП / карта на месте</option>
+                                        <option>Наличные</option>
+                                        <option>Отсрочка до 7 дней (курьер)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-urgent submit"><canvas data-sprite="bolt"
+                                    data-color="white"></canvas>Вызвать мастера срочно</button>
+                            <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки
+                                    персональных данных</a>. Перезвоним с номера +7 (991) 001-00-01 и сразу назначим
+                                мастера.</p>
+                        </form>
+
+                        <div class="success" id="success">
+                            <div class="ok">✔</div>
+                            <h3>ЗАЯВКА ПРИНЯТА В РАБОТУ</h3>
+                            <p>Алексей или Влад уже смотрит, кто ближе к вашей точке. Перезвоним в течение 3 минут.</p>
+                            <div class="num" id="orderNum">Заявка № VM-0000</div>
+                            <button class="btn btn-ghost" id="againBtn" style="margin-top:22px">Отправить ещё
+                                одну</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="wrap">
+            <div class="f-grid">
+                <div class="f-col">
+                    <a href="#top" class="logo" style="margin-bottom:18px">
+                        <span class="mark"><canvas data-sprite="bolt" data-color="ink"></canvas></span>
+                        <span class="logo-txt">ВОЛЬТ<i style="color:var(--volt)">·</i>МОБИЛЬ<small>Брагино ·
+                                Ярославль</small></span>
+                    </a>
+                    <p>Выездной ремонт электровелосипедов и лёгкого электротранспорта в Брагино (Дзержинский район
+                        Ярославля). Работаем круглосуточно. Главная специализация — срочная помощь курьерам на смене.
+                    </p>
+                    <div class="soc">
+                        <a href="https://t.me/+79910010001" target="_blank" rel="noopener" aria-label="Telegram"><canvas
+                                data-sprite="tg" data-color="volt"></canvas></a>
+                        <a href="tel:+79910010001" aria-label="Позвонить"><canvas data-sprite="phone"
+                                data-color="volt"></canvas></a>
+                    </div>
+                </div>
+                <div class="f-col">
+                    <h4>Разделы</h4>
+                    <a href="#urgent">Курьерам срочно</a>
+                    <a href="#services">Услуги и цены</a>
+                    <a href="#zones">Брагино — зоны выезда</a>
+                    <a href="#team">Мастера</a>
+                    <a href="#form">Вызвать мастера</a>
+                </div>
+                <div class="f-col">
+                    <h4>Ремонт</h4>
+                    <a href="#services">Мотор-колёса</a>
+                    <a href="#services">Контроллеры и дисплеи</a>
+                    <a href="#services">Переборка батарей</a>
+                    <a href="#services">BMS и балансировка</a>
+                    <a href="#services">Тормоза и механика</a>
+                    <a href="#services">Прокол на месте</a>
+                </div>
+                <div class="f-col">
+                    <h4>Контакты</h4>
+                    <p style="margin-bottom:14px"><a href="tel:+79910010001"
+                            style="font-size:16px;font-weight:800;color:var(--volt-lt);font-variant-numeric:tabular-nums">+7
+                            (991) 001-00-01</a><br>круглосуточно, без выходных</p>
+                    <p>Мастерская и склад:<br><b style="color:#fff">г. Ярославль,<br>Тутаевское шоссе,
+                            1в</b><br>Брагино, Дзержинский район</p>
+                    <p style="margin-top:14px">Telegram: @volt_bragino</p>
+                </div>
+            </div>
+            <div class="f-bottom">
+                <span>© <span id="year">2024</span> ВОЛЬТ·МОБИЛЬ — выездной ремонт электровелосипедов, Брагино,
+                    Ярославль.</span>
+                <span>Цены на сайте не являются публичной офертой</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= FLOATING ================= -->
+    <div class="dock">
+        <button class="d-up" id="toTop" aria-label="Наверх"><canvas data-sprite="up" data-color="ink"></canvas></button>
+        <a class="d-tg" href="https://t.me/+79910010001" target="_blank" rel="noopener" aria-label="Telegram"><canvas
+                data-sprite="tg" data-color="ink"></canvas></a>
+        <a class="d-call" href="tel:+79910010001" aria-label="Позвонить"><canvas data-sprite="phone"
+                data-color="white"></canvas></a>
+    </div>
+
+    <div class="mobile-bar">
+        <a href="tel:+79910010001" class="mb-call"><canvas data-sprite="phone" data-color="white"></canvas>Позвонить</a>
+        <a href="#form" class="mb-form"><canvas data-sprite="bolt" data-color="ink"></canvas>Срочный вызов</a>
+    </div>
+
+    <div id="toast"><canvas data-sprite="bolt" data-color="volt"></canvas><span id="toastText">Готово</span></div>
+
+    <script>
+        (function () {
+            "use strict";
+            const $ = (s, c) => (c || document).querySelector(s);
+            const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+            const PHONE_TEL = '+7 (991) 001-00-01';
+
+            /* ============ PIXEL SPRITES ============ */
+            const SPRITES = {
+                bolt: ['...XX...', '..XXX...', '.XXX....', 'XXXXXX..', '....XXX.', '...XXX..', '..XXX...', '..X.....'],
+                wrench: ['.....XX.', '....X.XX', '.....XX.', '....XX..', '...XX...', '..XX....', '.XX.....', 'X.......'],
+                coin: ['..XXXX..', '.X....X.', 'X.XXX..X', 'X.X.X..X', 'X.XXX..X', 'X.X....X', '.X....X.', '..XXXX..'],
+                clock: ['..XXXX..', '.X....X.', 'X..X..X.', 'X..X..X.', 'X..XX.X.', 'X.....X.', '.X....X.', '..XXXX..'],
+                pin: ['..XXXX..', '.X....X.', 'X..XX..X', 'X..XX..X', 'X......X', '.X....X.', '..X..X..', '...XX...'],
+                phone: ['.XXXXXX.', '.X....X.', '.X....X.', '.X....X.', '.X....X.', '.X.XX.X.', '.XXXXXX.', '........'],
+                tg: ['X.......', 'XX......', 'XXXXXX..', 'XXXXXXXX', 'XXXXXX..', '.XXX....', '..X.....', '........'],
+                up: ['...XX...', '..XXXX..', '.XXXXXX.', 'XX.XX.XX', '...XX...', '...XX...', '...XX...', '........'],
+                info: ['..XXXX..', '.X....X.', 'X..XX..X', 'X..XX..X', 'X..XX..X', 'X......X', '.X....X.', '..XXXX..'],
+                search: ['..XXX...', '.X...X..', 'X.....X.', 'X.....X.', '.X...X..', '..XXX.X.', '.....XX.', '......X.']
+            };
+            const COLORS = { orange: '#ef6c1a', volt: '#8fd421', 'volt-dk': '#5f9411', cyan: '#2aa9d6', gold: '#f0b429', red: '#d93a4a', ink: '#1d1f2a', white: '#fbf7e8' };
+            function paintSprite(cv) {
+                const rows = SPRITES[cv.dataset.sprite]; if (!rows) return;
+                const main = COLORS[cv.dataset.color] || COLORS.ink;
+                const w = rows[0].length, h = rows.length;
+                cv.width = w; cv.height = h;
+                const c = cv.getContext('2d'); c.clearRect(0, 0, w, h);
+                for (let y = 0; y < h; y++)for (let x = 0; x < w; x++) {
+                    const ch = rows[y][x]; if (ch === '.' || ch === ' ') continue;
+                    c.fillStyle = ch === 'W' ? COLORS.white : ch === 'K' ? COLORS.ink : main;
+                    c.fillRect(x, y, 1, 1);
+                }
+            }
+            function paintAll() { $$('[data-sprite]').forEach(paintSprite); }
+
+            /* ============ PIXEL PORTRAITS ============ */
+            const FACE = [
+                '................', '.....KKKKKK.....', '....KCCCCCCK....', '...KCCCCCCCK....', '...KKKKKKKKK....',
+                '...KSSSSSSSK....', '..KSSKSSKSSSK...', '..KSSKSSKSSSK...', '..KSSSSSSSSSK...', '..KSSSKKKSSSK...',
+                '...KSSSSSSSK....', '....KKSSSSKK....', '...KTTTTTTTTK...', '..KTTTTTTTTTTK..', '.KTTKTTTTTTKTTK.', '.KKKKKKKKKKKKKK.'];
+            const BEARD = [
+                '................', '.....KKKKKK.....', '....KCCCCCCK....', '...KCCCCCCCK....', '...KKKKKKKKK....',
+                '...KSSSSSSSK....', '..KSSKSSKSSSK...', '..KSSKSSKSSSK...', '..KSSSSSSSSSK...', '..KSSBBBBBSSK...',
+                '...KBBBBBBBK....', '....KKBBBBKK....', '...KTTTTTTTTK...', '..KTTTTTTTTTTK..', '.KTTKTTTTTTKTTK.', '.KKKKKKKKKKKKKK.'];
+            function paintPortrait(cv, pal, beard) {
+                const rows = beard ? BEARD : FACE;
+                const map = { K: '#1d1f2a', C: pal.cap, S: pal.skin, T: pal.shirt, B: pal.beard || '#6b4a2a' };
+                cv.width = 16; cv.height = 16;
+                const c = cv.getContext('2d');
+                c.fillStyle = '#f1ead2'; c.fillRect(0, 0, 16, 16);
+                for (let y = 0; y < 16; y++)for (let x = 0; x < 16; x++) {
+                    const ch = rows[y][x]; if (ch === '.') continue;
+                    c.fillStyle = map[ch] || '#1d1f2a'; c.fillRect(x, y, 1, 1);
+                }
+            }
+
+            /* ============ HERO SCENE ============ */
+            function initHero() {
+                const cv = $('#heroCanvas'); if (!cv) return;
+                const W = 200, H = 126, ctx = cv.getContext('2d');
+                const P = {
+                    sky: ['#171834', '#22224a', '#33295c', '#4c3364', '#74405f', '#a35552', '#cf7a48', '#e8a457'],
+                    star: '#fdf6d8', bld: '#12132a', bld2: '#1b1d38', win: '#f0b429', winOff: '#2b2d4a',
+                    road: '#2a2c3c', curb: '#54576f', line: '#f0e2a8',
+                    ink: '#0f1020', tire: '#1b1d31', rim: '#8b90ad', volt: '#8fd421', voltDk: '#5f9411',
+                    orange: '#ef6c1a', orangeLt: '#ffa15c', cyan: '#2aa9d6', cyanDk: '#1c7fa3',
+                    skin: '#e8b48c', white: '#fbf7e8', yellow: '#ffe066', yellowDim: '#8a7a3a'
+                };
+                let f = 0;
+                function px(x, y, c) { ctx.fillStyle = c; ctx.fillRect(Math.round(x), Math.round(y), 1, 1); }
+                function rc(x, y, w, h, c) { ctx.fillStyle = c; ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h)); }
+                function ln(x0, y0, x1, y1, c, t) {
+                    t = t || 1; x0 = Math.round(x0); y0 = Math.round(y0); x1 = Math.round(x1); y1 = Math.round(y1);
+                    let dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0), sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1, err = dx - dy, g = 0;
+                    while (g++ < 2000) {
+                        for (let i = 0; i < t; i++)for (let j = 0; j < t; j++)px(x0 + i - ((t - 1) >> 1), y0 + j - ((t - 1) >> 1), c);
+                        if (x0 === x1 && y0 === y1) break;
+                        const e2 = 2 * err;
+                        if (e2 > -dy) { err -= dy; x0 += sx; }
+                        if (e2 < dx) { err += dx; y0 += sy; }
+                    }
+                }
+                function ring(cx, cy, r, c, step) {
+                    step = step || 2;
+                    for (let a = 0; a < 360; a += step)px(cx + Math.cos(a * Math.PI / 180) * r, cy + Math.sin(a * Math.PI / 180) * r, c);
+                }
+                const stars = [], wins = [], blds = [];
+                let sd = 7;
+                function rnd() { sd = (sd * 9301 + 49297) % 233280; return sd / 233280; }
+                for (let i = 0; i < 34; i++)stars.push({ x: Math.floor(rnd() * W), y: Math.floor(rnd() * 40), p: Math.floor(rnd() * 3) });
+                let bx = -6;
+                while (bx < W + 10) {
+                    const w = 8 + Math.floor(rnd() * 12), h = 14 + Math.floor(rnd() * 30);
+                    blds.push({ x: bx, w: w, h: h }); bx += w + 2 + Math.floor(rnd() * 4);
+                }
+                blds.forEach(b => {
+                    for (let yy = 66 - b.h + 4; yy < 64; yy += 5)for (let xx = b.x + 3; xx < b.x + b.w - 3; xx += 4)
+                        if (rnd() > .45) wins.push({ x: xx, y: yy, on: rnd() > .35 });
+                });
+                function draw() {
+                    f++;
+                    P.sky.forEach((c, i) => rc(0, i * 9, W, 9, c));
+                    stars.forEach(s => { if ((Math.floor(f / 6) + s.p) % 4 !== 0) px(s.x, s.y, P.star); });
+                    rc(168, 10, 9, 9, '#fdf6d8'); rc(172, 8, 7, 7, '#22224a');
+                    blds.forEach((b, i) => { rc(b.x, 66 - b.h, b.w, b.h, i % 2 ? P.bld : P.bld2); });
+                    wins.forEach(w => { px(w.x, w.y, w.on && ((Math.floor(f / 9) + w.x) % 7 !== 0) ? P.win : P.winOff); });
+                    rc(0, 66, W, 10, '#4a4660'); rc(0, 76, W, 4, P.curb); rc(0, 80, W, H - 80, P.road);
+                    for (let x = -((f * 2) % 24); x < W; x += 24) { rc(x, 104, 12, 2, P.line); }
+                    rc(0, 120, W, 6, '#22243a');
+                    for (let i = 0; i < 3; i++) {
+                        const y = 90 + i * 9, x = ((W + 30) - ((f * 3 + i * 40) % (W + 60))) - 15;
+                        rc(x, y, 10 + i * 3, 1, i === 1 ? P.cyan : P.white);
+                    }
+
+                    const bob = (Math.floor(f / 3) % 2) ? 0 : -1;
+                    ctx.save(); ctx.translate(0, bob);
+
+                    const rW = { x: 62, y: 101 }, fW = { x: 118, y: 101 }, bb = { x: 90, y: 101 };
+                    [rW, fW].forEach((w, idx) => {
+                        ring(w.x, w.y, 11, P.tire, 2); ring(w.x, w.y, 10, P.ink, 2); ring(w.x, w.y, 9, P.rim, 4);
+                        const off = idx ? 1.3 : 0;
+                        for (let k = 0; k < 4; k++) {
+                            const a = (f * 14 + k * 90 + off * 20) * Math.PI / 180;
+                            ln(w.x, w.y, w.x + Math.cos(a) * 8, w.y + Math.sin(a) * 8, '#5d6280', 1);
+                        }
+                        rc(w.x - 1, w.y - 1, 3, 3, idx === 1 ? P.volt : P.orange);
+                    });
+                    ln(rW.x, rW.y, 80, 78, P.volt, 2);
+                    ln(80, 78, bb.x, bb.y, P.volt, 2);
+                    ln(bb.x, bb.y, 110, 80, P.volt, 2);
+                    ln(80, 78, 110, 80, P.volt, 2);
+                    ln(110, 80, fW.x, fW.y, P.voltDk, 2);
+                    ln(78, 76, 88, 76, P.ink, 2);
+                    ln(108, 76, 116, 74, P.ink, 2);
+                    ln(94, 96, 106, 84, P.volt, 5);
+                    ln(94, 96, 106, 84, P.ink, 1);
+                    for (let i = 0; i < 3; i++)px(97 + i * 4, 93 - i * 4, '#ffffff');
+                    ring(bb.x, bb.y, 4, P.volt, 6); rc(bb.x - 2, bb.y - 2, 4, 4, P.ink);
+                    const ang = (f * 14) * Math.PI / 180;
+                    const px1 = bb.x + Math.cos(ang) * 7, py1 = bb.y + Math.sin(ang) * 7;
+                    const px2 = bb.x - Math.cos(ang) * 7, py2 = bb.y - Math.sin(ang) * 7;
+                    ln(bb.x, bb.y, px1, py1, P.ink, 2); ln(bb.x, bb.y, px2, py2, P.ink, 2);
+                    rc(px1 - 2, py1 - 1, 5, 2, P.orangeLt); rc(px2 - 2, py2 - 1, 5, 2, P.orangeLt);
+
+                    rc(46, 62, 22, 22, P.orange);
+                    rc(46, 62, 22, 2, '#1d1f2a'); rc(46, 82, 22, 2, '#1d1f2a');
+                    rc(46, 62, 2, 22, '#1d1f2a'); rc(66, 62, 2, 22, '#1d1f2a');
+                    rc(55, 67, 4, 3, P.white); rc(53, 70, 3, 4, P.white); rc(56, 70, 4, 3, P.white); rc(54, 74, 6, 2, P.white);
+                    ln(68, 74, 80, 77, P.ink, 2);
+
+                    ln(78, 76, px1 - 1, py1 - 3, P.cyanDk, 3);
+                    ln(78, 76, px2 - 1, py2 - 3, '#176f8c', 3);
+                    ln(78, 76, 92, 60, P.cyan, 4);
+                    ln(78, 76, 92, 60, '#176f8c', 1);
+                    ln(91, 62, 113, 74, P.cyan, 3);
+                    rc(112, 73, 4, 3, P.skin);
+                    rc(94, 52, 10, 9, P.skin);
+                    rc(93, 48, 12, 5, P.orange); rc(93, 47, 12, 2, '#1d1f2a'); rc(103, 49, 3, 3, P.orangeLt);
+                    px(101, 56, P.ink); px(100, 59, '#c98a63');
+                    ln(92, 57, 94, 57, '#1d1f2a', 1);
+                    ctx.restore();
+
+                    const bl = (Math.floor(f / 4) % 2) ? 0 : 1;
+                    for (let i = 0; i < 14; i++) {
+                        const y = 84 - Math.floor(i / 2) + bob;
+                        if (i % 2 === bl) continue;
+                        px(124 + i, y, i < 5 ? P.yellow : P.yellowDim);
+                        if (i > 3) px(124 + i, y + 1, P.yellowDim);
+                    }
+                    px(122, 86 + bob, P.yellow); px(123, 86 + bob, P.yellow);
+                }
+                draw(); setInterval(draw, 110);
+            }
+
+            /* ============ MAP ============ */
+            function initMap() {
+                const cv = $('#mapCanvas'); if (!cv) return;
+                const W = 180, H = 150, ctx = cv.getContext('2d');
+                function rc(x, y, w, h, c) { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); }
+                function px(x, y, c) { ctx.fillStyle = c; ctx.fillRect(x, y, 1, 1); }
+                const base = { x: 92, y: 58 };
+                function draw(blink) {
+                    rc(0, 0, W, H, '#f1ead2');
+                    for (let y = 6; y < H; y += 18)for (let x = 6; x < W; x += 20) {
+                        rc(x, y, 16, 14, (x + y) % 36 === 0 ? '#e6dfc4' : '#ebe4cc');
+                    }
+                    for (let y = 0; y < H; y += 18)rc(0, y, W, 2, '#d6ceb0');
+                    for (let x = 0; x < W; x += 20)rc(x, 0, 2, H, '#d6ceb0');
+                    for (let y = 0; y < H; y++) {
+                        const x = Math.round(8 + Math.sin(y / 26) * 7);
+                        rc(x - 9, y, 14, 1, '#a9d8ef');
+                        if (y % 4 === 0) px(x - 9, y, '#8fc9e6');
+                    }
+                    rc(120, 96, 34, 26, '#cfe6b4'); rc(120, 96, 34, 2, '#b6d695');
+                    for (let i = 0; i < 6; i++) { px(126 + i * 5, 104, '#8fd421'); px(126 + i * 5, 105, '#5f9411'); px(126 + i * 5, 112, '#8fd421'); px(126 + i * 5, 113, '#5f9411'); }
+                    for (let y = 0; y < H; y++) {
+                        const x = Math.round(70 + y * 0.22);
+                        rc(x - 2, y, 5, 1, '#c3b995');
+                        if (y % 5 < 2) px(x, y, '#fbf7e8');
+                    }
+                    rc(0, 104, W, 4, '#c3b995'); for (let x = 0; x < W; x += 6)rc(x, 105, 3, 1, '#fbf7e8');
+                    rc(0, 34, W, 3, '#cdc3a2');
+                    rc(34, 0, 3, H, '#cdc3a2');
+                    [[26, '#8fd421'], [48, '#a8b894'], [70, '#bdb79a']].forEach(function (r) {
+                        const s = r[0], c = r[1];
+                        for (let i = 0; i < s * 2; i += 4) {
+                            rc(base.x - s + i, base.y - s, 2, 1, c); rc(base.x - s + i, base.y + s, 2, 1, c);
+                            rc(base.x - s, base.y - s + i, 1, 2, c); rc(base.x + s, base.y - s + i, 1, 2, c);
+                        }
+                    });
+                    rc(base.x - 8, base.y - 8, 16, 16, '#c9ef6a');
+                    rc(base.x - 5, base.y - 5, 10, 10, '#5f9411');
+                    px(base.x - 1, base.y - 3, '#fbf7e8'); px(base.x, base.y - 3, '#fbf7e8'); px(base.x - 2, base.y - 1, '#fbf7e8');
+                    px(base.x - 1, base.y - 1, '#fbf7e8'); px(base.x, base.y - 1, '#fbf7e8'); px(base.x + 1, base.y - 1, '#fbf7e8');
+                    px(base.x, base.y + 1, '#fbf7e8'); px(base.x - 1, base.y + 1, '#fbf7e8'); px(base.x - 2, base.y + 3, '#fbf7e8');
+                    const mk = [{ x: 52, y: 112, c: '#2aa9d6', a: 1 }, { x: 126, y: 44, c: '#8fd421', a: 0 }, { x: 104, y: 122, c: '#8fd421', a: 1 }, { x: 30, y: 26, c: '#ef6c1a', a: 2 }, { x: 148, y: 80, c: '#2aa9d6', a: 1 }];
+                    mk.forEach(function (m) {
+                        const on = m.a === 0 ? true : (m.a === 1 ? blink % 2 === 0 : blink % 3 !== 0);
+                        if (on) { rc(m.x - 3, m.y - 3, 7, 7, m.c); rc(m.x - 2, m.y - 2, 5, 5, '#fbf7e8'); rc(m.x - 1, m.y - 1, 3, 3, m.c); }
+                        else { rc(m.x - 3, m.y - 3, 7, 7, '#cfc7a8'); }
+                    });
+                }
+                let b = 0; draw(0);
+                setInterval(() => { b++; draw(b); }, 420);
+            }
+
+            /* ============ TICKER ============ */
+            const tickerItems = [
+                'Брагино · Дзержинский район Ярославля',
+                'База и склад — <b>Тутаевское шоссе, 1в</b>',
+                'Мастера <b>Алексей и Влад</b> на линии',
+                'Средний выезд по Брагино — <b>14 мин</b>',
+                'Курьерам — <b>вне очереди</b>',
+                'Ночная смена работает <b>22:00–06:00</b>',
+                'Оплата <b>после</b> ремонта · СБП / карта / наличные'
+            ];
+            const tt = $('#tickerTrack');
+            if (tt) { const h = tickerItems.map(t => '<span>' + t + ' <span class="dot">◆</span></span>').join(''); tt.innerHTML = h + h; }
+
+            /* ============ header / progress / top ============ */
+            const hdr = $('#hdr'), prog = $('#progress'), toTop = $('#toTop');
+            function onScroll() {
+                const y = window.scrollY;
+                hdr.classList.toggle('stuck', y > 10);
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+                toTop.classList.toggle('on', y > 700);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+            toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            /* ============ burger ============ */
+            const burger = $('#burger'), menu = $('#menu');
+            burger.addEventListener('click', () => {
+                const o = menu.classList.toggle('open'); burger.classList.toggle('on', o);
+            });
+            $$('#menu a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); burger.classList.remove('on'); }));
+
+            /* ============ reveal ============ */
+            const io = new IntersectionObserver(e => {
+                e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
+            }, { threshold: .1, rootMargin: '0px 0px -30px 0px' });
+            $$('[data-reveal]').forEach(el => io.observe(el));
+
+            /* ============ ETA ============ */
+            const etaLine = $('#etaLine'), avgEta = $('#avgEta');
+            function refreshEta() {
+                const m = 7 + Math.floor(Math.random() * 7);
+                if (etaLine) etaLine.textContent = 'выезд через ' + m + ' минут';
+                if (avgEta) avgEta.textContent = (12 + Math.floor(Math.random() * 5));
+            }
+            refreshEta(); setInterval(refreshEta, 15000);
+
+            /* ============ feed ============ */
+            const feedData = [
+                { t: 'Курьер, <b>ул. Труфанова</b> — замена камеры · Влад', m: '4 мин назад' },
+                { t: 'Курьер, <b>Ленинградский пр-т</b> — контроллер · Алексей', m: '12 мин назад' },
+                { t: 'Курьер, <b>ТРК «Рио»</b> — прокол, 15 минут · Алексей', m: '26 мин назад' },
+                { t: 'Курьер, <b>ул. Панина</b> — балансировка АКБ · Влад', m: '41 мин назад' },
+                { t: 'Курьер, <b>15-й микрорайон</b> — датчик Холла · Алексей', m: '55 мин назад' },
+                { t: 'Курьер, <b>ул. Громова</b> — прокачка тормозов · Влад', m: '1 ч назад' },
+                { t: 'Курьер, <b>ул. Урицкого</b> — ручка газа, разъём · Алексей', m: '1 ч назад' },
+                { t: 'Курьер, <b>Дядьково</b> — переборка АКБ в мастерской · Влад', m: '2 ч назад' }
+            ];
+            const feedBody = $('#feedBody');
+            function renderFeed(s) {
+                feedBody.innerHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    const d = feedData[(s + i) % feedData.length];
+                    const el = document.createElement('div'); el.className = 'fitem';
+                    el.innerHTML = '<span class="fdot"></span><span class="ftxt">' + d.t + '</span><span class="ftime">' + d.m + '</span>';
+                    feedBody.appendChild(el);
+                }
+            }
+            let feedIdx = 0; renderFeed(0);
+            setInterval(() => { feedIdx = (feedIdx + 1) % feedData.length; renderFeed(feedIdx); }, 5200);
+
+            /* ============ urgency + order buttons ============ */
+            const symField = $('#sym');
+            function setUrg(v) {
+                $$('#urgBox input[name="urg"]').forEach(r => { r.checked = (r.value === v); r.closest('label').classList.toggle('sel', r.checked); });
+            }
+            $$('#urgBox input[name="urg"]').forEach(r => r.addEventListener('change', () => {
+                $$('#urgBox label').forEach(l => l.classList.remove('sel'));
+                if (r.checked) r.closest('label').classList.add('sel');
+            }));
+            $$('[data-order]').forEach(b => b.addEventListener('click', () => {
+                symField.value = 'Нужна услуга: ' + b.dataset.order + '. ';
+                symField.focus({ preventScroll: true });
+                document.getElementById('form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                toast('Услуга добавлена в заявку');
+            }));
+
+            /* ============ tabs ============ */
+            $$('#tabs .tab').forEach(t => t.addEventListener('click', () => {
+                $$('#tabs .tab').forEach(x => x.classList.remove('on'));
+                t.classList.add('on');
+                $$('.panel').forEach(p => p.classList.remove('on'));
+                $('#tab-' + t.dataset.tab).classList.add('on');
+            }));
+
+            /* ============ zones ============ */
+            const zones = [
+                { n: 'Тутаевское шоссе — район базы', m: 'Тутаевское ш., 1в и соседние дома', t: 5, c: 'fast' },
+                { n: 'ТРК «Рио» и около', m: 'Тутаевское шоссе, 1 · точка выдачи заказов', t: 6, c: 'fast' },
+                { n: 'ул. Елены Колесовой / 15-й мкр', m: 'Елены Колесовой, 15-й микрорайон', t: 8, c: 'fast' },
+                { n: 'ул. Труфанова', m: 'Труфанова, дворы и точки выдачи', t: 10, c: 'fast' },
+                { n: 'ул. Панина', m: 'Панина, Северный проезд', t: 10, c: 'fast' },
+                { n: 'Ленинградский проспект (Брагино)', m: 'от Тутаевского ш. до ул. Урицкого', t: 12, c: 'fast' },
+                { n: 'ул. Урицкого', m: 'Урицкого, жилые кварталы', t: 12, c: 'fast' },
+                { n: '5-й и 6-й микрорайоны Брагино', m: 'дворы у Ленинградского проспекта', t: 12, c: 'fast' },
+                { n: 'ул. Громова', m: 'Громова, проезд Матросова', t: 14, c: 'mid' },
+                { n: 'ул. Бабича', m: 'Бабича, кварталы у школы и ТЦ', t: 14, c: 'mid' },
+                { n: 'ул. Волгоградская', m: 'Волгоградская, южная часть Брагино', t: 16, c: 'mid' },
+                { n: 'пр-т Дзержинского (север)', m: 'верхняя часть проспекта, Брагино', t: 18, c: 'mid' },
+                { n: 'ул. Светлая / Норская сторона', m: 'Светлая, граница Дзержинского района', t: 20, c: 'mid' },
+                { n: 'Дядьково / пос. Никольское', m: 'частный сектор рядом с Брагино', t: 22, c: 'mid' },
+                { n: 'Другие районы Ярославля', m: 'центр, Заволжский, Фрунзенский — по согласованию', t: 35, c: 'far' }
+            ];
+            const zlist = $('#zlist'), zsearch = $('#zoneSearch');
+            function renderZones(q) {
+                const s = (q || '').trim().toLowerCase();
+                const f = zones.filter(z => !s || (z.n + ' ' + z.m).toLowerCase().includes(s));
+                if (!f.length) { zlist.innerHTML = '<div class="no-result">Не нашли улицу? Мы работаем по всему Брагино — позвоните: <b style="color:#5f9411">' + PHONE_TEL + '</b></div>'; return; }
+                zlist.innerHTML = f.map(z => '<div class="zrow"><span class="zn">' + z.n + '<br><span>' + z.m + '</span></span><span class="zt">' + z.t + ' мин</span><span class="pill ' + z.c + '">' + (z.c === 'fast' ? 'быстро' : z.c === 'mid' ? 'стандарт' : 'выезд') + '</span></div>').join('');
+            }
+            renderZones('');
+            zsearch.addEventListener('input', e => renderZones(e.target.value));
+
+            /* ============ team ============ */
+            const team = [
+                {
+                    n: 'АЛЕКСЕЙ', r: 'Ведущий мастер · электрика',
+                    about: 'Мотор-колёса, контроллеры, проводка и датчики. Берёт самые «загадочные» случаи, когда байк просто молчит. Выезжает по Брагино днём и вечером.',
+                    skills: ['мотор-колесо', 'контроллер', 'датчики Холла', 'проводка', 'прокол'],
+                    e: 9, jobs: 2180, rate: '4.98', st: 'свободен',
+                    pal: { cap: '#8fd421', skin: '#e8b48c', shirt: '#2aa9d6' }, beard: false
+                },
+                {
+                    n: 'ВЛАД', r: 'Мастер · батареи и механика',
+                    about: 'Аккумуляторы, BMS, переборка на новых ячейках, тормоза и трансмиссия. Держит ночную смену и забирает сложные АКБ в мастерскую на Тутаевском шоссе.',
+                    skills: ['переборка АКБ', 'BMS', 'балансировка', 'тормоза', 'цепь и кассета'],
+                    e: 6, jobs: 1460, rate: '4.96', st: 'в пути',
+                    pal: { cap: '#ef6c1a', skin: '#dfab82', shirt: '#5f9411', beard: '#6b4a2a' }, beard: true
+                }
+            ];
+            $('#teamGrid').innerHTML = team.map((m, i) => `
+ <article class="master" data-reveal ${i ? 'class="d' + i + '"' : ''}>
+   <div class="ava">
+     <canvas id="ava${i}"></canvas>
+     <span class="status ${m.st === 'свободен' ? '' : 'busy'}"><i></i>${m.st}</span>
+   </div>
+   <div class="info">
+     <h3>${m.n}</h3>
+     <div class="role">${m.r}</div>
+     <p class="about">${m.about}</p>
+     <div class="skills">${m.skills.map(s => '<span>' + s + '</span>').join('')}</div>
+     <div class="meta"><span>опыт <b>${m.e} лет</b></span><span>ремонтов <b>${m.jobs.toLocaleString('ru-RU')}</b></span><span>рейтинг <b>${m.rate}</b></span></div>
+   </div>
+ </article>`).join('');
+            team.forEach((m, i) => paintPortrait($('#ava' + i), m.pal, m.beard));
+
+            /* ============ phone mask ============ */
+            const phone = $('#phone');
+            phone.addEventListener('input', () => {
+                let d = phone.value.replace(/\D/g, '');
+                if (d.startsWith('8')) d = '7' + d.slice(1);
+                if (!d.startsWith('7')) d = '7' + d;
+                d = d.slice(0, 11);
+                let o = '+7';
+                if (d.length > 1) o += ' (' + d.slice(1, 4);
+                if (d.length >= 5) o += ') ' + d.slice(4, 7);
+                if (d.length >= 8) o += '-' + d.slice(7, 9);
+                if (d.length >= 10) o += '-' + d.slice(9, 11);
+                phone.value = o;
+            });
+
+            /* ============ form ============ */
+            const form = $('#callForm'), success = $('#success');
+            function mark(id, bad) { $(id).classList.toggle('bad', bad); const i = $(id).querySelector('input,textarea'); if (i) i.classList.toggle('err', bad); }
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                let ok = true;
+                if ($('#name').value.trim().length < 2) { mark('#f-name', true); ok = false; } else mark('#f-name', false);
+                if (phone.value.replace(/\D/g, '').length < 11) { mark('#f-phone', true); ok = false; } else mark('#f-phone', false);
+                if (symField.value.trim().length < 4) { mark('#f-sym', true); ok = false; } else mark('#f-sym', false);
+                if (!ok) { toast('Проверьте поля'); return; }
+                const u = $('input[name="urg"]:checked').value;
+                const lb = u === 'urgent' ? 'срочно — курьер на смене' : u === 'today' ? 'сегодня' : 'планово';
+                $('#orderNum').textContent = 'Заявка № VM-' + Math.floor(1000 + Math.random() * 8999) + ' · ' + lb;
+                form.style.display = 'none'; success.classList.add('on');
+                toast('Заявка отправлена');
+            });
+            $('#againBtn').addEventListener('click', () => {
+                success.classList.remove('on'); form.style.display = 'block'; form.reset(); setUrg('urgent'); phone.value = ''; symField.focus();
+            });
+            $$('.field input, .field textarea').forEach(i => i.addEventListener('input', () => {
+                const f = i.closest('.field'); if (f) f.classList.remove('bad'); i.classList.remove('err');
+            }));
+
+            /* ============ toast ============ */
+            let tT;
+            function toast(t) {
+                const el = $('#toast'); $('#toastText').textContent = t; el.classList.add('on');
+                clearTimeout(tT); tT = setTimeout(() => el.classList.remove('on'), 3200);
+            }
+
+            $('#year').textContent = new Date().getFullYear();
+
+            paintAll();
+            initHero();
+            initMap();
+            $$('[data-reveal]').forEach(el => io.observe(el));
+        })();
+    </script>
+</body>
+
+</html>
